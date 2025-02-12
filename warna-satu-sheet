@@ -1,0 +1,20 @@
+function totalwarna(selReferensi) {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
+  
+  var range = sheet.getDataRange(); // Mengambil semua data di sheet
+  var backgrounds = range.getBackgrounds(); // Warna background semua sel
+  
+  var warnaReferensi = sheet.getRange(selReferensi).getBackground(); // Warna referensi
+  var total = 0; // Untuk menghitung jumlah sel yang sesuai
+
+  for (var i = 0; i < backgrounds.length; i++) {
+    for (var j = 0; j < backgrounds[i].length; j++) {
+      if (backgrounds[i][j] === warnaReferensi) {
+        total++; // Tambah 1 untuk setiap sel dengan warna yang sama
+      }
+    }
+  }
+
+  return total; // Mengembalikan jumlah sel yang memiliki warna yang sama
+}
